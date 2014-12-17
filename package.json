@@ -1,8 +1,14 @@
 {
 	"name": "pg-error",
 	"version": "0.1.337",
-	"description": "",
-	"keywords": [],
+	"description": "Error class that parses PostgreSQL's ErrorResponse format and sets human readable field names. Works with node-pg, too.",
+	"keywords": [
+		"error",
+		"exception",
+		"pg",
+		"postgres",
+		"postgresql"
+	],
 	"homepage": "https://github.com/moll/node-pg-error",
 	"bugs": "https://github.com/moll/node-pg-error/issues",
 
