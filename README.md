@@ -21,17 +21,16 @@ error.
 [pg-fields]: http://www.postgresql.org/docs/9.3/static/protocol-error-fields.html
 [brianc]: https://github.com/brianc
 [node-pg]: https://github.com/brianc/node-postgres
-[semver]: http://semver.org/
 
 
 Installing
 ----------
-From v1.0.0 PgError.js will follow [semantic versioning][semver], but until
-then, breaking changes may appear between minor versions (the middle number).
-
 ```
 npm install pg-error
 ```
+
+PgError.js follows [semantic versioning](http://semver.org/), so feel free to
+depend on its major version with something like `>= 1.0.0 < 2` (a.k.a `^1.0.0`).
 
 
 Using
