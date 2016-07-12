@@ -78,6 +78,13 @@ connection.parseE = PgError.parse
 connection.parseN = PgError.parse
 ```
 
+If you want every connection instance to parse errors to `PgError`, set them on the `Pg.Connection` prototype:
+
+```javascript
+Pg.Connection.prototype.parseE = PgError.parse
+Pg.Connection.prototype.parseN = PgError.parse
+```
+
 However, the way the client is built, it will start emitting those errors and
 notices under the `PgError` event name. Until that's improved in the
 `Pg.Connection` class, you'll need to re-emit those under the correct `error`
