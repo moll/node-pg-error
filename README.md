@@ -106,6 +106,29 @@ connection.on("PgError", emitPgError)
 That's it. Your Pg query errors should now be instances of `PgError` and with
 all the human readable field names.
 
+### Using with [Knex.js](http://knexjs.org/)
+
+Using PgError.js with Knex.js is similar to using it with the plain Node.js PostgreSQL client library described above. Because Knex.js has a connection pool, you'll have to hook PgError.js in on every newly created connection:
+
+```javascript
+  var Knex = require("knex")
+
+  Knex({
+    pool: {
+      min: 1,
+      max: 10,
+      afterCreate: function(connection, done) {
+        connection.connection.parseE = PgError.parse
+        connection.connection.parseN = PgError.parse
+        connection.connection.on("PgError", emitPgError)
+        done()
+      }
+    }
+  })
+```
+
+The `emitPgError` function is listed above.
+
 ### Properties on an instance of PgError
 For descriptions of the properties, please see [PostgreSQL's Error and Notice
 Message Fields][pg-fields].
