@@ -91,14 +91,16 @@ notices under the `PgError` event name. Until that's improved in the
 and `notice` events:
 
 ```javascript
-connection.on("PgError", function(err) {
+function emitPgError(err) {
   switch (err.severity) {
     case "ERROR":
     case "FATAL":
     case "PANIC": return this.emit("error", err)
     default: return this.emit("notice", err)
   }
-})
+}
+
+connection.on("PgError", emitPgError)
 ```
 
 That's it. Your Pg query errors should now be instances of `PgError` and with
