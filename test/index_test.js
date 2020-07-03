@@ -158,6 +158,16 @@ describe("Pg.Connection", function() {
     err.column.must.equal("name")
   })
 
+  it("must emit query syntax errors as PgError", function*() {
+    var err
+    try { yield pg.query.bind(pg, "FOO INTO BAR") }
+    catch (ex) { err = ex }
+
+    err.must.be.an.instanceof(PgError)
+    err.severity.must.equal("ERROR")
+    err.condition.must.equal("syntax_error")
+  })
+
   it("must emit EXCEPTION as an error", function*() {
     var err
     try {
