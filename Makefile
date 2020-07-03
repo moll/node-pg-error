@@ -35,6 +35,9 @@ db/create:
 db/drop:
 	dropdb pg_error_test
 
+shrinkwrap:
+	npm shrinkwrap --dev
+
 clean:
 	rm -f *.tgz
 	npm prune --production
@@ -44,4 +47,5 @@ clean:
 .PHONY: pack publish tag
 .PHONY: errors.json
 .PHONY: db/create db/drop
+.PHONY: shrinkwrap
 .PHONY: clean
