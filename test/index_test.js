@@ -4,7 +4,7 @@ var Pg = require("pg")
 Pg.Connection.prototype.parseE = PgError.parse
 Pg.Connection.prototype.parseN = PgError.parse
 
-var pg = new Pg.Client({host: "/tmp", database: "pg_error_test"})
+var pg = new Pg.Client({database: "pg_error_test"})
 
 pg.connection.on("PgError", function(err) {
   switch (err.severity) {

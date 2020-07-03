@@ -1,3 +1,4 @@
 /*.tgz
 /errors_to_json.sed
 /npm-shrinkwrap.json
+/.travis.yml

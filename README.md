@@ -1,7 +1,7 @@
 PgError.js
 ==========
-[![NPM version][npm-badge]](http://badge.fury.io/js/pg-error)
-[npm-badge]: https://badge.fury.io/js/pg-error.png
+[![NPM version][npm-badge]](https://www.npmjs.com/package/pg-error)
+[![Build status][travis-badge]](https://travis-ci.org/moll/node-pg-error)
 
 **PgError.js** is an error class for Node.js that parses [PostgreSQL's
 ErrorResponse format][pg-formats] and names its fields with **human readable
@@ -17,6 +17,8 @@ strict and classify errors beforehand when building fault tolerant systems. That
 helps programmatically decide whether to wrap, escalate or handle a particular
 error.
 
+[npm-badge]: https://img.shields.io/npm/v/pg-error.svg
+[travis-badge]: https://travis-ci.org/moll/node-pg-error.svg?branch=master
 [pg-formats]: http://www.postgresql.org/docs/9.3/static/protocol-message-formats.html
 [pg-fields]: http://www.postgresql.org/docs/9.3/static/protocol-error-fields.html
 [brianc]: https://github.com/brianc
