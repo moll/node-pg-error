@@ -29,10 +29,10 @@ tag:
 errors.json:
 	wget $(ERRORS_URL) -O- | sed -Ef errors_to_json.sed > "$@"
 
-createdb:
+db/create:
 	createdb -E utf8 -T template0 pg_error_test
 
-dropdb:
+db/drop:
 	dropdb pg_error_test
 
 clean:
@@ -43,5 +43,5 @@ clean:
 .PHONY: test spec autotest autospec
 .PHONY: pack publish tag
 .PHONY: errors.json
-.PHONY: createdb dropdb
+.PHONY: db/create db/drop
 .PHONY: clean
