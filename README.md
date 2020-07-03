@@ -107,7 +107,6 @@ That's it. Your Pg query errors should now be instances of `PgError` and with
 all the human readable field names.
 
 ### Using with [Knex.js](http://knexjs.org/)
-
 Using PgError.js with Knex.js is similar to using it with the plain Node.js PostgreSQL client library described above. Because Knex.js has a connection pool, you'll have to hook PgError.js in on every newly created connection:
 
 ```javascript
@@ -180,5 +179,5 @@ at [andri@dot.ee][email] or [create an issue online][issues].
 
 [email]: mailto:andri@dot.ee
 [issues]: https://github.com/moll/node-pg-error/issues
-[moll]: http://themoll.com
+[moll]: https://m811.com
 [monday]: https://mondayapp.com
