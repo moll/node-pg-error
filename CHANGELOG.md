@@ -1,4 +1,4 @@
-## Unreleased
+## 1.1.0 (Jul 3, 2020)
 - Update PostgreSQL error names.
 
 ## 1.0.0 (Apr 16, 2015)
