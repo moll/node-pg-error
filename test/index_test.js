@@ -138,11 +138,14 @@ describe("Pg.Connection", function() {
 
   beforeEach(function(done) { pg.query("BEGIN", done) })
   afterEach(function(done) { pg.query("ROLLBACK", done) })
+
   it("must emit query errors as PgError", function*() {
-    yield pg.query.bind(pg, 'CREATE TABLE "models" (' +
-                   '"serial" SERIAL,' +
-                   '"name" TEXT NOT NULL' +
-                   ')')
+		yield pg.query.bind(pg, `
+			CREATE TEMPORARY TABLE "models" (
+				"serial" SERIAL,
+				"name" TEXT NOT NULL
+			)
+		`)
 
     var err
     try { yield pg.query.bind(pg, 'INSERT INTO "models" DEFAULT VALUES') }
@@ -158,14 +161,16 @@ describe("Pg.Connection", function() {
   it("must emit EXCEPTION as an error", function*() {
     var err
     try {
-    yield pg.query.bind(pg, "DO language plpgsql $$\n" +
-                        "BEGIN\n" +
-                        "RAISE EXCEPTION 'Pay attention!';\n" +
-                        "END\n" +
-                        "$$")
+			yield pg.query.bind(pg, `
+				DO language plpgsql $$
+				BEGIN
+				RAISE EXCEPTION 'Pay attention!';
+				END
+				$$
+			`)
     } catch (ex) { err = ex }
 
-    err.must.be.an.instanceof(PgError)
+    err.must.be.an.error(PgError)
     err.message.must.equal("Pay attention!")
     err.severity.must.equal("ERROR")
   })
@@ -174,11 +179,13 @@ describe("Pg.Connection", function() {
     it("must emit " + severity + " as a notice", function*() {
       var notice; pg.once("notice", function(msg) { notice = msg })
 
-      yield pg.query.bind(pg, "DO language plpgsql $$\n" +
-                          "BEGIN\n" +
-                          "RAISE " + severity + " 'Pay attention!';\n" +
-                          "END\n" +
-                          "$$")
+			yield pg.query.bind(pg, `
+				DO language plpgsql $$
+				BEGIN
+				RAISE ${severity} 'Pay attention!';
+				END
+				$$
+			`)
 
       notice.must.be.an.instanceof(PgError)
       notice.message.must.equal("Pay attention!")

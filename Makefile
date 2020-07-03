@@ -1,4 +1,4 @@
-NODE_OPTS = --harmony-generators
+NODE_OPTS = --harmony
 TEST_OPTS =
 ERRORS_URL = https://raw.githubusercontent.com/postgres/postgres/master/src/backend/utils/errcodes.txt
 
